@@ -1,17 +1,63 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import * as ReactDOM from 'react-dom';
+import WidgetComponent from './WidgetComponent';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class WidgetElementWrapper extends HTMLElement {
+    descriptor = {
+        valueModel: {
+            type: 'number',
+            metadata: {title: 'number value'}
+        },
+        configuration: {
+            hideButton: {type: 'boolean', defaultValue: false}
+        }
+    }
+    _config;
+    _inputData;
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    get inputData() { return this._inputData; }
+    set inputData(data) {
+        this._inputData = data;
+        this.update();
+    }
+
+    get config() { return this._config }
+    set config(config) {
+        this._config = config;
+        this.update();
+    }
+
+    getProps() {
+        return {
+            inputData: this._inputData,
+            config: this._config,
+            outputData: (value) => this.dispatchEvent(new CustomEvent('outputData', {detail: value}))
+        }
+    }
+
+    update() {
+        this.unmount();
+        this.mount();
+    }
+
+    mount() {
+        ReactDOM.render(<WidgetComponent {...this.getProps()} />, this);
+    }
+
+    unmount() {
+        ReactDOM.unmountComponentAtNode(this);
+    }
+
+    /**
+     * custom elements lifecycle callbacks
+     * https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks
+      */
+    connectedCallback() {
+        this.mount();
+    }
+
+    disconnectedCallback() {
+        this.unmount();
+    }
+}
+customElements.define('react-template-widget', WidgetElementWrapper);

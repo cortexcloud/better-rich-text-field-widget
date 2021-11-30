@@ -1,0 +1,8 @@
+.WidgetComponent button {
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.WidgetComponent input {
+    border-radius: 6px;
+}
