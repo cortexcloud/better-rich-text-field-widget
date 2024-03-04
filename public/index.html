@@ -19,7 +19,7 @@
 <br/>
 
 <p>Update widget inputData:</p>
-<input type="number" id="numberUpdateInput"/>
+<input id="numberUpdateInput"/>
 <button onclick="updateInputData()">Update</button>
 <br />
 <br />
@@ -37,7 +37,7 @@
 
     function updateInputData() {
         const inputValue = document.querySelector('#numberUpdateInput')?.value;
-        reactEl.inputData = inputValue != null ? +inputValue : undefined;
+        reactEl.inputData = inputValue ?? '';
     }
 
     function toggleResetButton() {

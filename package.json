@@ -3,17 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cross-env": "^7.0.3",
+    "draft-js": "^0.11.7",
+    "draft-js-import-html": "^1.4.1",
+    "draftjs-to-html": "^0.9.1",
+    "html-to-draftjs": "^1.5.0",
     "react": "^17.0.2",
     "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.2",
+    "react-draft-wysiwyg": "^1.15.0",
     "react-scripts": "4.0.3",
     "uglifyjs-webpack-plugin": "^2.2.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "npm run build:react && npm run build:bundle",
+    "start": "react-app-rewired --openssl-legacy-provider start",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider npm run build:react && npm run build:bundle",
     "build:react": "react-app-rewired build",
-    "build:bundle": "webpack --config bundle.config.js",
+    "build:bundle": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack --config bundle.config.js",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
