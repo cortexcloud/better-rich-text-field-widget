@@ -6,3 +6,21 @@
 .WidgetComponent input {
     border-radius: 6px;
 }
+
+.wrapper-container {
+    border: 1px solid var(--gray-200, #d0d3dc);
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: white;
+}
+  
+.toolbar-container {
+    border: none;
+    border-bottom: 1px solid var(--gray-200, #d0d3dc);
+}
+
+.editor-container {
+    height: 430px;
+    overflow-y: auto;
+}
+  

@@ -8,9 +8,7 @@ class WidgetElementWrapper extends HTMLElement {
       type: "string",
       metadata: { title: "Note" },
     },
-    configuration: {
-      hideButton: { type: "boolean", defaultValue: false },
-    },
+    configuration: {},
   };
   _config;
   _inputData;

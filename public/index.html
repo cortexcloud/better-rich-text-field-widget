@@ -39,12 +39,6 @@
         const inputValue = document.querySelector('#numberUpdateInput')?.value;
         reactEl.inputData = inputValue ?? '';
     }
-
-    function toggleResetButton() {
-        const config = {...reactEl.config ?? {}};
-        config.hideButton = !config?.hideButton;
-        reactEl.config = config;
-    }
 </script>
 </body>
 </html>
