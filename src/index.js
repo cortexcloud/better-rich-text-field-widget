@@ -18,7 +18,7 @@ class WidgetElementWrapper extends HTMLElement {
   }
   set inputData(data) {
     this._inputData = data;
-    this.update();
+    // this.update();
   }
 
   get config() {
